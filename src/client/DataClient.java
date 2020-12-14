@@ -26,14 +26,16 @@ public class DataClient {
 				out = out + ", ";
 		}		
 		dout.writeUTF(out);
+		System.out.println("Client is transfered data");
 		dout.flush();
+		DataInputStream din = new DataInputStream(clientSocket.getInputStream());
+		System.out.println("This is responce from server: " + din.readUTF());
+		clientSocket.close();
 	}
 	
-	public static void main(String[] args) throws IOException{
-		
+	public static void main(String[] args) throws IOException{		
 		List<Integer> forTransmition = List.of(10, 20 , 30 , 40);
 		DataClient dataClient = new DataClient(forTransmition);
-		dataClient.getData();
-		
+		dataClient.getData();		
 	}
 }
